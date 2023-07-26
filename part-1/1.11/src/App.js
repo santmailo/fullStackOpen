@@ -30,12 +30,14 @@ function App() {
       <div>
         <h1>Statistics</h1>
         <table>
-        <StatisticLine text="Good" value={good} />
-        <StatisticLine text="Neutral" value={neutral} />
-        <StatisticLine text="Bad" value={bad} />
-        <StatisticLine text="All" value={good+neutral+bad} />
-        <StatisticLine text="Average" value={(good+neutral+bad)/3} />
-        <StatisticLine text="Positive" value={((good) / (good+neutral+bad) )* 100} />
+          <tbody>
+            <StatisticLine text="Good" value={good} />
+            <StatisticLine text="Neutral" value={neutral} />
+            <StatisticLine text="Bad" value={bad} />
+            <StatisticLine text="All" value={good+neutral+bad} />
+            <StatisticLine text="Average" value={(good+neutral+bad)/3} />
+            <StatisticLine text="Positive" value={((good) / (good+neutral+bad) )* 100} />
+          </tbody>
         </table>
       </div>
     )
