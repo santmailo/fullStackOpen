@@ -13,16 +13,22 @@ function App() {
   const handleBadClick = () => setBad(bad + 1);
 
 
-  return (
-    <div className="App">
-      <h1>Give Feedback</h1>
-      <Button handleClick={handleGoodClick} text="Good" />
-      <Button handleClick={handleNeutralClick} text="Neutral" />
-      <Button handleClick={handleBadClick} text="Bad" />
+  if(!good && !neutral && !bad) {
+    return (
+      <div className="App">
+        <h1>Give Feedback</h1>
+        <Button handleClick={handleGoodClick} text="Good" />
+        <Button handleClick={handleNeutralClick} text="Neutral" />
+        <Button handleClick={handleBadClick} text="Bad" />
+  
+      </div>
+    );
+  }
+  
+  else{
+    return <Statistic good={good} neutral={neutral} bad={bad} />
+  }
 
-      <Statistic good={good} neutral={neutral} bad={bad} />
-    </div>
-  );
 }
 
 export default App;
