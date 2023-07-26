@@ -4,7 +4,7 @@ const Part = ({ parts }) => {
     return (
         <div>
             {parts.map(part => <p key={part.id}>{part.name} {part.exercises}</p>)}
-            <p>Total of {total} excercises</p>
+            <h3>Total of {total} excercises</h3>
         </div>
     )
 }
