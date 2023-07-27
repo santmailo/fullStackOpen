@@ -33,7 +33,7 @@ function App(props) {
     <div className="App">
       <h1>Notes</h1>
       <ul>
-        {notes.map(note => 
+        {notesToShow.map(note => 
           <Note key={note.id} note={note.content} />
         )}
       </ul>
