@@ -9,28 +9,28 @@ function App() {
   const [showAll, setShowAll] = useState(true);
 
   const hook = () => {
-    console.log("effect");  
     axios.get('http://localhost:3001/notes')
     .then(response => {
-      console.log("promise fulfilled");
       setNotes(response.data);  
     })
 }
 
   useEffect(hook,[]);
 
-  console.log("render", notes.length, "notes");
 
   const addNote = (event) => {
     event.preventDefault();
     const noteObject = {
       content : newNote,
       important: Math.random()<0.5,
-      id:notes.length+1
-    }
+    } 
 
-    setNotes(notes.concat(noteObject));
-    setNewNote("");
+    
+    axios.post('http://localhost:3001/notes', noteObject)
+    .then(response => {
+        setNotes(notes.concat(response.data));
+        setNewNote("");
+    })
   }
 
   const handleNoteChange = (event) => {
