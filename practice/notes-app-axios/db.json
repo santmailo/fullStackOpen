@@ -3,12 +3,12 @@
     {
       "id": 1,
       "content": "HTML is easy",
-      "important": true
+      "important": false
     },
     {
       "id": 2,
       "content": "Browser can execute only JavaScript",
-      "important": false
+      "important": true
     },
     {
       "id": 3,
@@ -17,17 +17,17 @@
     },
     {
       "content": "hello",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "hey",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
       "content": "sdfds",
-      "important": false,
+      "important": true,
       "id": 6
     },
     {
@@ -37,8 +37,13 @@
     },
     {
       "content": "sdfs",
-      "important": true,
+      "important": false,
       "id": 8
+    },
+    {
+      "content": "",
+      "important": true,
+      "id": 9
     }
   ]
 }
