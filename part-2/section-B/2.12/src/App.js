@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import axios from 'axios';
+import url from './services/service';
 import Filter from "./components/filter";
 import PersonForm from "./components/personForm";
 import Persons from "./components/persons";
@@ -15,11 +15,8 @@ function App() {
 
   // get data from server
   useEffect(()=>{
-  axios.get('http://localhost:3001/persons')
-  .then(response => {
-    setPersons(response.data);
-  })
-},[]);
+    url.getAll()
+    .then(response => setPersons(response.data))},[]);
 
     // add person to persons array
     const addPersons = (event)=> {
@@ -32,6 +29,7 @@ function App() {
       }
       // add the new name to the persons array
       const newPerson = {name: newName, number: newNumber};
+      url.create(newPerson);
       setPersons(persons.concat(newPerson));
     }
   
@@ -47,6 +45,8 @@ function App() {
   
     // return the following
     const search = (event) => {
+      setSearchResult([]);
+      setSearchName('');
       setSearchName(event.target.value);
       setSearchResult(persons.filter((person) => person.name.includes(searchName)));
     }
