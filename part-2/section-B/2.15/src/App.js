@@ -26,21 +26,18 @@ function App() {
       // to check if the name is already in the array; if it is, alert and return
       if(persons.some((person) => person.name === newName)){
         if(window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)){
-          const person = persons.find((person) => person.name === newName);
+          const person = persons.find((person) => person.name === newName );
           const changedPerson = {...person, number: newNumber};
           url.update(person.id, changedPerson);
           setPersons(persons.map((person) => person.id !== changedPerson.id ? person : changedPerson));
         }
-        return;
       }
-
-      else{
         // add the new name to the persons array
         const newPerson = {name: newName, number: newNumber};
         url.create(newPerson);
         setPersons(persons.concat(newPerson));
-      }
     }
+  
   
     // add new name to newName
     const addNewName = (event)=>{
@@ -67,15 +64,15 @@ function App() {
     
   return (
     <div className="App">
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
 
       <Filter search={search} searchResult={searchResult}/>
 
-      <h3>Add a new Contact</h3>
+      <h1>Add a new Contact</h1>
 
       <PersonForm addPersons = {addPersons} addNewName = {addNewName} addNewNumber={addNewNumber}/>
 
-      <h3>Contacts</h3>
+      <h1>Contacts</h1>
 
       <Persons persons = {persons} deletePerson={deletePerson}/>
     </div>

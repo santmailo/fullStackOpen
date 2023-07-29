@@ -1,13 +1,30 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import noteService from './services/notes'
+import Notification from "./components/notification"
 
 import Note from './components/Note'; 
+
+const Footer = () => {
+  const footerStyle = {
+    color: 'green',
+    fontStyle: 'italic',
+    fontSize: 16
+  }
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
+    </div>
+  )
+}
 
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
+
   // const [showAll, setShowAll] = useState(true);
 
 //   const hook = () => {
@@ -65,9 +82,12 @@ useEffect(() => {
       .then(response => {
         setNotes(notes.map(note => note.id !== id ? note : response.data))
       }).catch(error => {
-        alert(
-          `the note '${note.content}' was already deleted from server`
+        setErrorMessage(
+          `Note '${note.content}' was already removed from server`
         )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
         setNotes(notes.filter(n => n.id !== id))
       })
     })  }
@@ -76,6 +96,8 @@ useEffect(() => {
   return (
         <div className="App">
           <h1>Notes</h1>
+          <Notification message={errorMessage} />
+
           <ul>
             {notes.map(note => 
               <Note key={note.id} note={note} toggleImportance={() => 
@@ -89,6 +111,7 @@ useEffect(() => {
         <button type="submit">Add</button>
       </form>
 
+      <Footer />
     </div>
   );
 }
