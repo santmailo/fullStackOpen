@@ -25,13 +25,21 @@ function App() {
   
       // to check if the name is already in the array; if it is, alert and return
       if(persons.some((person) => person.name === newName)){
-        alert(`${newName} is already added to phonebook`);
+        if(window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)){
+          const person = persons.find((person) => person.name === newName);
+          const changedPerson = {...person, number: newNumber};
+          url.update(person.id, changedPerson);
+          setPersons(persons.map((person) => person.id !== changedPerson.id ? person : changedPerson));
+        }
         return;
       }
-      // add the new name to the persons array
-      const newPerson = {name: newName, number: newNumber};
-      url.create(newPerson);
-      setPersons(persons.concat(newPerson));
+
+      else{
+        // add the new name to the persons array
+        const newPerson = {name: newName, number: newNumber};
+        url.create(newPerson);
+        setPersons(persons.concat(newPerson));
+      }
     }
   
     // add new name to newName
